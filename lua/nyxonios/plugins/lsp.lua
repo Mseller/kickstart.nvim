@@ -73,10 +73,12 @@ return {
           -- to learn the available actions
           lsp_zero.default_keymaps({buffer = bufnr})
           vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>')
+          lsp_zero.buffer_autoformat()
         end)
 
+
         require('mason-lspconfig').setup({
-          ensure_installed = {'gopls', 'rust_analyzer'},
+          ensure_installed = {'gopls', 'rust_analyzer', 'terraformls'},
           handlers = {
             lsp_zero.default_setup,
             lua_ls = function()

@@ -14,9 +14,5 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-  
-}
-
 require('lazy').setup("nyxonios.plugins")
 
