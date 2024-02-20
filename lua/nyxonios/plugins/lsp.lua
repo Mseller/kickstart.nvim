@@ -22,7 +22,7 @@ return {
       'hrsh7th/nvim-cmp',
       event = 'InsertEnter',
       dependencies = {
-        {'L3MON4D3/LuaSnip'},
+        { 'L3MON4D3/LuaSnip' },
       },
       config = function()
         -- Here is where you configure the autocompletion settings.
@@ -37,7 +37,7 @@ return {
           formatting = lsp_zero.cmp_format(),
           mapping = cmp.mapping.preset.insert({
             -- `Enter` key to confirm completion
-            ['<CR>'] = cmp.mapping.confirm({select = false}),
+            ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
             -- Ctrl+Space to trigger completion menu
             ['<C-Space>'] = cmp.mapping.complete(),
@@ -57,11 +57,11 @@ return {
     -- LSP
     {
       'neovim/nvim-lspconfig',
-      cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-      event = {'BufReadPre', 'BufNewFile'},
+      cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+      event = { 'BufReadPre', 'BufNewFile' },
       dependencies = {
-        {'hrsh7th/cmp-nvim-lsp'},
-        {'williamboman/mason-lspconfig.nvim'},
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'williamboman/mason-lspconfig.nvim' },
       },
       config = function()
         -- This is where all the LSP shenanigans will live
@@ -71,14 +71,15 @@ return {
         lsp_zero.on_attach(function(client, bufnr)
           -- see :help lsp-zero-keybindings
           -- to learn the available actions
-          lsp_zero.default_keymaps({buffer = bufnr})
+          lsp_zero.default_keymaps({ buffer = bufnr })
           vim.keymap.set('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>')
+          vim.keymap.set('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>')
           lsp_zero.buffer_autoformat()
         end)
 
 
         require('mason-lspconfig').setup({
-          ensure_installed = {'gopls', 'rust_analyzer', 'terraformls'},
+          ensure_installed = { 'gopls', 'rust_analyzer', 'terraformls' },
           handlers = {
             lsp_zero.default_setup,
             lua_ls = function()
